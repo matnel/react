@@ -858,9 +858,13 @@ var ReactCompositeComponentMixin = {
     } finally {
       ReactCurrentOwner.current = null;
     }
+    invariant( renderedComponent !== null,
+      '%s.render(): You tried to render null, can not do that',
+      this.constructor.displayName || 'ReactCompositeComponent'
+    );
     invariant(
       ReactComponent.isValidComponent(renderedComponent),
-      '%s.render(): A valid ReactComponent must be returned.',
+      '%s.render(): Check that your object is instance of React',
       this.constructor.displayName || 'ReactCompositeComponent'
     );
     return renderedComponent;
